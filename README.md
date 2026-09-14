@@ -78,6 +78,20 @@ ls data/<channel>_<date>_<jobid>_<task>/
 
 Final output per job: `data/.../out_recon.root`.
 
+## Customize the reconstructed HIPO / ROOT content
+
+Both are controlled directly in `rivanna_pipeline.slurm`, not via env vars:
+
+- **Reconstructed HIPO content** (Stage 3): the `recon-util` line's `-c`
+  flag picks which services run (`0` none, `1` default, `2` all). Add
+  `-y <yaml>` to point at a specific `clas12-config` yaml for a given
+  run period/variation instead of the default calibration.
+- **ROOT bank selection** (Stage 4): the `hipo2npz` line. No bank list
+  after the input/output paths converts every bank (current default);
+  add a comma-separated list (e.g. `REC::Particle,REC::Event,MC::Lund`)
+  to convert only those. A commented-out example with that narrower
+  list is left right below the active line.
+
 ## New physics channel
 
 Add `configs/<name>.conf` (define `GCARD_DEFAULT` + `run_generator()`,

@@ -119,7 +119,9 @@ echo "Reconstructed output: $JOBDIR/out_recon.hipo ($(du -h "$JOBDIR/out_recon.h
 
 # --- Stage 4: HIPO -> ROOT (hipo2npz, then npz_to_root.py) --------------
 echo "--- Stage 4: convert to ROOT ---"
-hipo2npz "$JOBDIR/out_recon.hipo" "$JOBDIR/out_recon.npz" REC::Particle,REC::Event,MC::Lund
+hipo2npz "$JOBDIR/out_recon.hipo" "$JOBDIR/out_recon.npz"
+# for fewer banks / smaller files, use this instead:
+# hipo2npz "$JOBDIR/out_recon.hipo" "$JOBDIR/out_recon.npz" REC::Particle,REC::Event,MC::Lund
 
 module purge
 module load gcc/11.4.0 openmpi/4.1.4 python/3.11.4
