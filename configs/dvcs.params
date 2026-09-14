@@ -1,0 +1,23 @@
+# Physics parameters for dvcs.conf (genepi). Plain KEY=value, sourced
+# by run_generator() -- edit these, not the bash logic, to change physics.
+BEAM_ENERGY=10.6
+TARGET_A=1
+TARGET_Z=1
+XBJ_MIN=0.001
+XBJ_MAX=1.0
+Y_MIN=0.001
+Y_MAX=1.0
+Q2_MIN=1.0
+Q2_MAX=20.0
+W2_MIN=4.0
+W2_MAX=50.0
+NU_MIN=0.3
+NU_MAX=11.0
+T_MIN=-1.2
+T_MAX=0.0
+VERTEX_X=0.
+VERTEX_Y=0.
+VERTEX_Z=-1.35   # cm, real RGC target z (matches gemc-run/rgc_summer2022.gcard)
+RASTER_X=1.0     # cm, radius (RGC raster radius = 1cm, per Jeopardy doc Sec III.B)
+RASTER_Y=1.0
+GPD_TYPE=1       # 1: VGG-type model -- not confirmed against the actual paper's choice

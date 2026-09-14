@@ -1,0 +1,13 @@
+# Physics parameters for jpsi.conf (JPsiGen). Plain KEY=value, sourced
+# by run_generator() -- edit these, not the bash logic, to change physics.
+BEAM_ENERGY=10.6
+T_LIM=-6.0
+TARGET_LENGTH=5.0
+EG_MIN=4
+EG_MAX=10.6
+VZ_MAX=2.5      # cm -- not independently verified against real RGC target length
+VZ_MIN=-2.5
+Q2_CUT=0.02
+T_SLOPE=1.13
+FERMI=0
+LEP_TYPE=0

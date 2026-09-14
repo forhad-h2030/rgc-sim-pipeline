@@ -1,0 +1,13 @@
+# Physics parameters for sidis.conf (clasdis). Plain KEY=value, sourced
+# by run_generator() -- edit these, not the bash logic, to change physics.
+BEAM_ENERGY=10.6
+TARGET=proton
+ZPOS=-1.35     # cm, real RGC target z (matches gemc-run/rgc_summer2022.gcard)
+ZWIDTH=0       # cm, target half-length -- not independently verified
+RASTER=2.0     # cm, diameter (RGC raster radius = 1cm, per Jeopardy doc Sec III.B)
+XMIN=0.05
+XMAX=0.95
+Q2MIN=0.85
+Q2MAX=20.0
+W2MIN=4.0
+W2MAX=50.0

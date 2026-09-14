@@ -1,0 +1,16 @@
+# Physics parameters for dvcs_dvcsgen.conf (dvcsgen). Plain KEY=value,
+# sourced by run_generator() -- edit these, not the bash logic.
+BEAM_ENERGY=10.6
+TARGET=proton
+XMIN=0.1
+XMAX=0.65
+Q2MIN=1.0
+Q2MAX=10.0
+YMIN=0.05
+YMAX=0.9
+TMIN=0
+TMAX=1.0
+ZPOS=-1.35     # cm, real RGC target z (matches gemc-run/rgc_summer2022.gcard)
+ZWIDTH=0       # cm, target half-length -- not independently verified
+RASTER=2.0     # cm, diameter (RGC raster radius = 1cm, per Jeopardy doc Sec III.B)
+GPD_MODEL=3    # 1-A,2-B,3-C,4-D -- not confirmed against the actual paper's choice

@@ -1,0 +1,8 @@
+data/
+logs/
+runs/
+*.hipo
+*.root
+*.npz
+__pycache__/
+*.pyc
