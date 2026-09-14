@@ -1,25 +1,7 @@
 """
-Convert a hipo2npz .npz file to a ROOT file with proper jagged
-(per-event, variable-length) branches.
-
-IMPORTANT: hipo2npz silently DROPS an event entirely from a bank's
-arrays when that bank has zero rows for that event (e.g. REC::Particle
-for an event where nothing was reconstructed) -- it does not write a
-placeholder empty row, and it does not expose which specific events
-were dropped. So when two banks end up with different total event
-counts in the same file (seen in practice: MC::Lund can have MORE
-events than REC::Particle/REC::Event, since GEMC writes truth for every
-simulated event but the reconstruction skips events with nothing to
-report), there is no way to realign them index-for-index after the
-fact.
-
-To avoid crashing (uproot requires every branch in one TTree to have
-the same number of entries) or silently corrupting alignment, banks are
-grouped by their actual event count and written as SEPARATE trees, one
-per distinct count. When all banks share the same count (the common
-case), this produces a single "tree" exactly as before. When they
-don't, you get multiple trees (e.g. "tree" and "tree_162") and should
-not assume entry i in one lines up with entry i in the other.
+Convert a hipo2npz .npz file to a ROOT file with jagged branches.
+Banks with mismatched event counts (hipo2npz can drop events with zero
+rows) go into separate trees ("tree", "tree_<n>") instead of crashing.
 """
 import sys
 
