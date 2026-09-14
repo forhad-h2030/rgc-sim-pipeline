@@ -20,12 +20,33 @@ RGC-ANA repo for how they were built.
 
 ## Submit
 
+Default: sidis, 1000 events.
 ```bash
-sbatch rivanna_pipeline.slurm                    # sidis, 1000 events
+sbatch rivanna_pipeline.slurm
+```
+
+J/psi channel (JPsiGen).
+```bash
 PHYSICS=jpsi sbatch rivanna_pipeline.slurm
-PHYSICS=dvcs NEVENTS=200000 sbatch rivanna_pipeline.slurm   # genepi: NEVENTS = raw trials, not kept events
-PHYSICS=dvcs_dvcsgen NEVENTS=1000 sbatch rivanna_pipeline.slurm  # dvcsgen: NEVENTS = kept events
-sbatch --array=0-9 rivanna_pipeline.slurm        # 10 jobs, unique seeds
+```
+
+DVCS via genepi. NEVENTS = raw trials, not kept events.
+```bash
+PHYSICS=dvcs NEVENTS=200000 sbatch rivanna_pipeline.slurm
+```
+
+DVCS via dvcsgen. NEVENTS = kept events (1:1, unlike genepi).
+```bash
+PHYSICS=dvcs_dvcsgen NEVENTS=1000 sbatch rivanna_pipeline.slurm
+```
+
+Array job: 10 jobs, unique seeds and data dirs.
+```bash
+sbatch --array=0-9 rivanna_pipeline.slurm
+```
+
+Override the gcard (detector config).
+```bash
 GCARD=rgc_fall2022.gcard sbatch rivanna_pipeline.slurm
 ```
 
