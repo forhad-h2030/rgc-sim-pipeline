@@ -28,6 +28,7 @@ WORKROOT=/project/ptgroup/Forhad/MC-HallB
 NEVENTS="${NEVENTS:-1000}"
 RUNNO="${RUNNO:-11}"
 PHYSICS="${PHYSICS:-sidis}"
+RUN_LABEL="${RUN_LABEL:-}"
 
 TASK_ID="${SLURM_ARRAY_TASK_ID:-0}"
 SEED="${SEED:-$((SLURM_JOB_ID + TASK_ID))}"
@@ -37,6 +38,16 @@ JOBDIR="$SCRIPT_DIR/data/${PHYSICS}_${RUN_DATE}_${SLURM_JOB_ID}_${TASK_ID}"
 mkdir -p "$JOBDIR/eventfiles"
 cd "$JOBDIR"
 
+cat > "$JOBDIR/run_info.txt" <<EOF
+job_id: $SLURM_JOB_ID
+task_id: $TASK_ID
+physics: $PHYSICS
+nevents_requested: $NEVENTS
+seed: $SEED
+submitted: $(date -Iseconds)
+label: $RUN_LABEL
+EOF
+
 CONFIG_FILE="$SCRIPT_DIR/configs/${PHYSICS}.conf"
 if [[ ! -f "$CONFIG_FILE" ]]; then
     echo "ERROR: no such physics config: $CONFIG_FILE" >&2
@@ -45,6 +56,7 @@ if [[ ! -f "$CONFIG_FILE" ]]; then
 fi
 source "$CONFIG_FILE"
 GCARD="${GCARD:-$GCARD_DEFAULT}"
+echo "gcard: $GCARD" >> "$JOBDIR/run_info.txt"
 
 echo "=== RGC-ANA pipeline: job ${SLURM_JOB_ID} task ${TASK_ID} ==="
 echo "PHYSICS=$PHYSICS  NEVENTS=$NEVENTS  SEED=$SEED  GCARD=$GCARD  RUNNO=$RUNNO"

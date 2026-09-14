@@ -13,10 +13,21 @@ data/<channel>_<date>_<jobid>_<task>/   per-job output
 logs/                    SLURM stdout/stderr
 ```
 
-`$WORKROOT` inside the script points at the pre-built shared artifacts
+`$WORKROOT` inside the script points at the pre-built shared software
 (`/project/ptgroup/Forhad/MC-HallB`: coatjava, GEMC sandbox, generators,
-Python venv) -- those must already exist; see CLAUDE.md in the main
-RGC-ANA repo for how they were built.
+Python venv). Those must already exist; they are built separately, not
+part of this repo.
+
+## GUI (optional)
+
+```bash
+./run_ui.sh
+```
+Form for Configuration/Generator/Events/Jobs/Run Label, submits and
+polls job status. Works two ways: run locally on a Mac (ssh's into
+Rivanna to submit) or directly on Rivanna via `ssh -X` (needs XQuartz
+on the Mac side, calls `sbatch` directly, no ssh hop). Title bar shows
+which mode it's in.
 
 ## Submit
 
@@ -71,7 +82,7 @@ Final output per job: `data/.../out_recon.root`.
 
 Add `configs/<name>.conf` (define `GCARD_DEFAULT` + `run_generator()`,
 leave LUND at `$jobdir/eventfiles/gen.dat`) and `configs/<name>.params`.
-Nothing else changes -- stages 2-4 only care about the LUND file format.
+Nothing else changes: stages 2-4 only care about the LUND file format.
 
 ## Sources (what each stage actually runs)
 
